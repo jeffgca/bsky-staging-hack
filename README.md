@@ -1,35 +1,25 @@
-# Cross Platform Browser Extension template repository
+# Bsky.app staging redirect utility
 
-React + TailwindCSS bundled with Vite.
+Because I'm so lazy I had to spend a couple of hours on this,
 
-# Installation
-```
-npm i
-```
-
-# Building the Extension:
 
 ## Firefox
-`npm run build` builds the extension by default for Firefox.
 
-The generated files are in `dist/`.
+Eventually available here:
 
-To load the extension in Firefox go to `about:debugging#/runtime/this-firefox` or
+https://addons.mozilla.org/en-US/firefox/addon/bsky-staging-redirect-utility/versions/
 
-Firefox > Preferences > Extensions & Themes > Debug Add-ons > Load Temporary Add-on...
 
-Here locate the `dist/` directory and open `manifest.json`
+## Chrome 
 
-## Chrome
-`npm run build:chrome` builds the extensions for Google Chrome.
+Maybe later?
 
-The generated files are in `dist/`.
-To load the extensions in Google Chrome go to `chrome://extensions/` and click `Load unpacked`. Locate the dist directory and select `manifest.json`.
+## Safari
 
-# Files:
+Unlikely, oof.
 
- - content-script - UI files
- - background.ts - Background script/Service worker
- - index.html - popup UI
+## Credits
 
-If you have any questions feel free to open an issue.
+Forked from here because i was trying to save time:
+
+https://github.com/akoskm/vite-react-tailwindcss-browser-extension
