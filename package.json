@@ -1,7 +1,7 @@
 {
-  "name": "vite-react-tailwindcss-browser-extension",
+  "name": "bsky-staging-redirection-utility",
   "version": "1.0.0",
-  "description": "A Cross Browser Extension template",
+  "description": "Currently the desktop web app give you bare bsky.app urls, but the desktop site is at staging.bsky.app",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -11,10 +11,11 @@
     "build:web": "tsc && vite build",
     "build": "NODE_ENV=production run-s build:js build:web",
     "build:chrome": "NODE_ENV=production run-s build:js build:background:chrome build:web build:manifest:chrome",
-    "package": "zip -r extension.zip dist/*",
+    "package": "./node_modules/.bin/web-ext build -s ./dist -a ./builds --overwrite-dest",
+    "package:chrome": "ls -la .",
     "preview": "vite preview"
   },
-  "author": "",
+  "author": "Jeff Griffiths jeff@techno.email",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.11.9",
@@ -28,10 +29,9 @@
     "tailwindcss": "^3.2.1",
     "typescript": "^4.8.4",
     "vite": "^3.2.2",
+    "web-ext": "^7.6.2",
     "webextension-polyfill": "^0.10.0"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
   }
 }

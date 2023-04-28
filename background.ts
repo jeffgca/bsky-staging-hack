@@ -1,26 +1,30 @@
 import browser from "webextension-polyfill";
 
-type Message = {
-  action: 'fetch',
-  value: null
-}
+browser.webNavigation.onBeforeNavigate.addListener((details) => {
+  let _uri = new URL(details.url)
 
-type ResponseCallback = (data: any) => void
+  console.log(details, _uri)
 
-async function handleMessage({action, value}: Message, response: ResponseCallback) {
-  if (action === 'fetch') {
-    const result = await fetch('https://meowfacts.herokuapp.com/');
+  /** 
+    hash: ""​
+    host: "staging.bsky.app"​
+    hostname: "staging.bsky.app"​
+    href: "https://staging.bsky.app/profile/hikango.bsky.social"​
+    origin: "https://staging.bsky.app"​
+    password: ""​
+    pathname: "/profile/hikango.bsky.social"​
+    port: ""​
+    protocol: "https:"​
+    search: "?x=1&y=2"​
+    searchParams: URLSearchParams(0)
+    username: ""
+  */
 
-    const { data } = await result.json();
+  if(details.parentFrameId === -1 && _uri.hostname === 'bsky.app') {
+    console.log('Matched!', _uri)
 
-    response({ message: 'success', data });
-  } else {
-    response({data: null, error: 'Unknown action'});
+    browser.tabs.update(details.tabId, {
+        url: `${_uri.protocol}//staging.${_uri.hostname}${_uri.pathname}`
+    });
   }
-}
-
-// @ts-ignore
-browser.runtime.onMessage.addListener((msg, sender, response) => {
-  handleMessage(msg, response);
-  return true;
 });

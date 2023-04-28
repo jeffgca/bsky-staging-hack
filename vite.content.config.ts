@@ -11,11 +11,11 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     outDir: resolve(__dirname, 'dist'),
-    lib: {
-      formats: ['iife'],
-      entry: resolve(__dirname, './content-script/index.tsx'),
-      name: 'Cat Facts'
-    },
+    // lib: {
+    //   formats: ['iife'],
+    //   entry: resolve(__dirname, './content-script/index.tsx'),
+    //   name: 'Cat Facts'
+    // },
     rollupOptions: {
       output: {
         entryFileNames: 'index.global.js',
